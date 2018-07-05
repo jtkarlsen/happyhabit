@@ -1,0 +1,6 @@
+.Activities-item {
+  height: 3em;
+  width: 100%;
+  border: 1px solid black;
+  box-sizing: border-box;
+}
