@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import firebase, { auth } from "./../firebase";
 import StyledFirebaseAuth from "react-firebaseui/StyledFirebaseAuth";
+import "./Login.css";
 
 class Login extends Component {
   uiConfig = {
@@ -13,9 +14,6 @@ class Login extends Component {
     signInSuccessUrl: this.props.location.state
       ? this.props.location.state.from || "/"
       : "/"
-    //   callbacks: {
-    //     signInSuccessWithAuthResult: () => false
-    //   }
   };
 
   render() {
@@ -23,10 +21,12 @@ class Login extends Component {
       <div>
         {!!auth.currentUser && (
           <span>
-            <p>You are logged in as {auth.currentUser.displayName}</p>
-            <a onClick={() => auth.signOut()}>
+            <div className="App-link Auth-info">
+              You are logged in as {auth.currentUser.displayName}
+            </div>
+            <div className="App-button" onClick={() => auth.signOut()}>
               Click here to login with another account
-            </a>
+            </div>
           </span>
         )}
         {!auth.currentUser && (

@@ -11,17 +11,29 @@
 
 .App-title {
   font-size: 1.5em;
+  line-height: 2em;
+  margin-top: 0.67em;
+  margin-bottom: 0.67em;
+  margin-left: 0;
+  margin-right: 0;
+  font-weight: bold;
+  cursor: pointer;
+  text-decoration: none;
+  color: white;
 }
 
 .App-intro {
   font-size: large;
 }
 
-.App-signout {
+.App-auth {
   position: absolute;
   top: 0px;
   right: 0px;
   margin: 1em;
+  text-decoration: none;
+  color: white;
+  cursor: pointer;
 }
 
 .App-link {
@@ -43,6 +55,7 @@
   color: white;
   background-color: #00668f;
   float: left;
+  cursor: pointer;
 }
 
 .App-button:active {

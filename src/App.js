@@ -50,16 +50,18 @@ class App extends Component {
       <BrowserRouter>
         <div className="App">
           <header className="App-header">
-            <h1 className="App-title">Happy Habit</h1>
+            <Link className="App-title" to="/">
+              Happy Habit
+            </Link>
             {this.state.authenticated && (
-              <div className="App-signout">
-                <a onClick={() => auth.signOut()}>Logout</a>
-              </div>
+              <a className="App-auth" onClick={() => auth.signOut()}>
+                Logout
+              </a>
             )}
             {!this.state.authenticated && (
-              <div className="App-signout">
-                <Link to="/login">Login</Link>
-              </div>
+              <Link className="App-auth" to="/login">
+                Login
+              </Link>
             )}
           </header>
           {!this.state.loadingAuth && (
