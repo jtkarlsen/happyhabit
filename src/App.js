@@ -1,9 +1,10 @@
 import React, { Component } from "react";
-import { BrowserRouter, Route, Link, Redirect } from "react-router-dom";
+import { BrowserRouter, Route, Link, Redirect, Switch } from "react-router-dom";
 import logo from "./logo.svg";
 import "./App.css";
 import Activities from "./Activities/Activities";
 import Activity from "./Activities/Activity";
+import ActivityForm from "./Activities/ActivityForm";
 import { auth } from "./firebase";
 import Login from "./Login/Login";
 
@@ -63,7 +64,7 @@ class App extends Component {
             )}
           </header>
           {!this.state.loadingAuth && (
-            <span>
+            <Switch>
               <Route exact path="/login" component={Login} />
               <PrivateRoute
                 exact
@@ -72,11 +73,18 @@ class App extends Component {
                 authenticated={this.state.authenticated}
               />
               <PrivateRoute
+                exact
+                path="/activities/create"
+                component={ActivityForm}
+                authenticated={this.state.authenticated}
+              />
+              <PrivateRoute
+                exact
                 path="/activities/:id"
                 component={Activity}
                 authenticated={this.state.authenticated}
               />
-            </span>
+            </Switch>
           )}
         </div>
       </BrowserRouter>

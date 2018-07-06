@@ -1,0 +1,13 @@
+.Activity-new {
+  height: 3em;
+  line-height: 3em;
+  width: 100%;
+  box-sizing: border-box;
+  border: 1px solid black;
+}
+
+.Activity-new:active {
+  width: 99%;
+  height: 2.9em;
+  margin: 0 auto;
+}

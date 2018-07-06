@@ -1,0 +1,14 @@
+.ActivityForm-input {
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+}
+
+.ActivityForm-input-container {
+  width: 100%;
+  height: 3em;
+}
+
+.ActivityForm-input-error {
+  border: 1px solid darkred;
+}

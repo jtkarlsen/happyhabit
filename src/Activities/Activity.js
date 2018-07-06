@@ -83,12 +83,16 @@ class Activity extends Component {
         <p>
           {this.state.activity.name} - {this.state.sum_rewards}
         </p>
-        <button onClick={this.addNewActivityCompletet}>NEW</button>
+        <div className="Activity-new" onClick={this.addNewActivityCompletet}>
+          NEW
+        </div>
         {this.state.completions
           ? this.state.completions.map(completion => (
               <div>
-                <p>{moment(completion.created_at.toDate()).format()}</p>
-                <p>{completion.reward}</p>
+                <p>
+                  {moment(completion.created_at.toDate()).fromNow()} -{" "}
+                  {completion.reward}
+                </p>
               </div>
             ))
           : null}

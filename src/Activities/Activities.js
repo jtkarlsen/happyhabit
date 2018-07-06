@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { firestore, auth } from "./../firebase";
 import "./Activities.css";
+import ActivityForm from "./ActivityForm";
 
 class Activities extends Component {
   state = {
@@ -31,12 +32,17 @@ class Activities extends Component {
       <div className="Activities">
         {this.state.activities.map(activity => {
           return (
-            <Link className="Activities-item" to={`/activities/${activity.id}`}>
+            <Link
+              key={activity.id}
+              className="Activities-item"
+              to={`/activities/${activity.id}`}
+            >
               {" "}
               {activity.name}{" "}
             </Link>
           );
         })}
+        <Link to={"/activities/create"}>Create new activity</Link>
       </div>
     );
   }
