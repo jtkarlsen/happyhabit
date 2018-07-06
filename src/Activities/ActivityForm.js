@@ -89,7 +89,7 @@ class ActivityForm extends Component {
             onChange={this.handleRewardChange}
           />
         </div>
-        <div className="Activity-new" onClick={this.addNewActivity}>
+        <div className="App-button" onClick={this.addNewActivity}>
           Create
         </div>
       </div>

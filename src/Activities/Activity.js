@@ -80,19 +80,15 @@ class Activity extends Component {
   render() {
     return (
       <div className="Activity">
-        <p>
-          {this.state.activity.name} - {this.state.sum_rewards}
-        </p>
-        <div className="Activity-new" onClick={this.addNewActivityCompletet}>
-          NEW
+        <div className="Activity-title">{this.state.activity.name}</div>
+        <div className="Activity-title">{this.state.sum_rewards}</div>
+        <div className="App-button" onClick={this.addNewActivityCompletet}>
+          Add completed activity
         </div>
         {this.state.completions
           ? this.state.completions.map(completion => (
-              <div>
-                <p>
-                  {moment(completion.created_at.toDate()).fromNow()} -{" "}
-                  {completion.reward}
-                </p>
+              <div className="App-link Activity-item">
+                {moment(completion.created_at.toDate()).fromNow()}
               </div>
             ))
           : null}

@@ -33,7 +33,7 @@ class Activities extends Component {
           return (
             <Link
               key={activity.id}
-              className="Activities-item"
+              className="App-link Activities-item"
               to={`/activities/${activity.id}`}
             >
               {" "}
@@ -41,9 +41,9 @@ class Activities extends Component {
             </Link>
           );
         })}
-        <div className="Activity-create">
-          <Link to={"/activities/create"}>Create new activity</Link>
-        </div>
+        <Link className="Activity-create" to={"/activities/create"}>
+          Create new activity
+        </Link>
       </div>
     );
   }

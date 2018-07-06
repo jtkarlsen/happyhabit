@@ -1,14 +1,17 @@
 .Activities-item {
+  color: white;
+  background-color: #62c5f2;
+}
+
+.Activity-create {
+  margin-top: 0.5em;
   text-decoration: none;
   height: 3em;
   line-height: 3em;
   width: 100%;
-  border: 1px solid black;
+  border: 1px solid white;
   box-sizing: border-box;
   display: inline-block;
-  color: black;
-}
-
-.Activity-create {
-  margin-top: 1em;
+  color: white;
+  background-color: #00668f;
 }

@@ -50,7 +50,6 @@ class App extends Component {
       <BrowserRouter>
         <div className="App">
           <header className="App-header">
-            <img src={logo} className="App-logo" alt="logo" />
             <h1 className="App-title">Happy Habit</h1>
             {this.state.authenticated && (
               <div className="App-signout">
