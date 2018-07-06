@@ -48,7 +48,6 @@ class ActivityForm extends Component {
           current_reward: parseInt(this.state.reward, 10)
         })
         .then(ref => {
-          console.log("added");
           this.setState({ redirect: true });
         });
     }
