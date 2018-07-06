@@ -38,8 +38,8 @@
 
 .App-link {
   text-decoration: none;
-  height: 3em;
-  line-height: 3em;
+  height: 4em;
+  line-height: 4em;
   width: 100%;
   border: 1px solid white;
   box-sizing: border-box;
@@ -47,8 +47,8 @@
 }
 
 .App-button {
-  height: 3em;
-  line-height: 3em;
+  height: 4em;
+  line-height: 4em;
   width: 100%;
   box-sizing: border-box;
   border: 1px solid white;
@@ -60,7 +60,7 @@
 
 .App-button:active {
   width: 99%;
-  height: 2.9em;
+  height: 3.8em;
   margin: 0 auto;
 }
 
