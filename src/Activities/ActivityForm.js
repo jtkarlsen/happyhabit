@@ -38,7 +38,7 @@ class ActivityForm extends Component {
 
   addNewActivity = () => {
     if (this.isValidInput()) {
-      const activitiesRef = firestore
+      firestore
         .collection("users")
         .doc(auth.currentUser.uid)
         .collection("activities")
