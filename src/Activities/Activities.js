@@ -13,16 +13,14 @@ class Activities extends Component {
       .collection("users")
       .doc(auth.currentUser.uid)
       .collection("activities")
-      .get()
-      .then(result => {
-        this.setState({
-          activities: result.docs.map(item => {
-            return { id: item.id, ...item.data() };
-          })
+      .onSnapshot(collectionSnapshot => {
+        let activities = [];
+        collectionSnapshot.forEach(function(doc) {
+          activities.push({ ...doc.data(), id: doc.id });
         });
-      })
-      .catch(err => {
-        console.log("Error getting documents", err);
+        this.setState({
+          activities
+        });
       });
   }
 

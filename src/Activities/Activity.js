@@ -18,47 +18,35 @@ class Activity extends Component {
       .doc(activityId);
   };
 
-  loadData = () => {
+  componentWillMount() {
     const activityRef = this.getActivityRef({
       userId: auth.currentUser.uid,
       activityId: this.state.activityId
     });
 
-    activityRef
-      .get()
-      .then(result => {
-        const activity = result.data();
-        this.setState({
-          activity
-        });
-      })
-      .catch(err => {
-        console.log("Error getting documents", err);
+    activityRef.onSnapshot(snapshot => {
+      const activity = snapshot.data();
+      this.setState({
+        activity
       });
+    });
 
     activityRef
       .collection("completions")
       .orderBy("created_at", "desc")
-      .get()
-      .then(result => {
+      .onSnapshot(collectionSnapshot => {
         this.setState({
-          completions: result.docs.map(item => {
+          completions: collectionSnapshot.docs.map(item => {
+            console.log(item.data());
             return { id: item.id, ...item.data() };
           })
         });
         this.setState({
           sum_rewards: this.state.completions
             .map(completion => completion.reward)
-            .reduce((a, b) => a + b)
+            .reduce((a, b) => a + b, 0)
         });
-      })
-      .catch(err => {
-        console.log("Error getting documents", err);
       });
-  };
-
-  componentWillMount() {
-    this.loadData();
   }
 
   addNewActivityCompletet = () => {
@@ -66,15 +54,10 @@ class Activity extends Component {
       userId: auth.currentUser.uid,
       activityId: this.state.activityId
     });
-    activityRef
-      .collection("completions")
-      .add({
-        created_at: firebase.firestore.FieldValue.serverTimestamp(),
-        reward: this.state.activity.current_reward
-      })
-      .then(ref => {
-        this.loadData();
-      });
+    activityRef.collection("completions").add({
+      created_at: firebase.firestore.FieldValue.serverTimestamp(),
+      reward: this.state.activity.current_reward
+    });
   };
 
   render() {
@@ -88,7 +71,10 @@ class Activity extends Component {
         {this.state.completions
           ? this.state.completions.map(completion => (
               <div className="App-link Activity-item">
-                {moment(completion.created_at.toDate()).fromNow()}
+                {(completion.created_at
+                  ? moment(completion.created_at.toDate())
+                  : moment()
+                ).fromNow()}
               </div>
             ))
           : null}
