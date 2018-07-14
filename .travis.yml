@@ -1,22 +1,18 @@
 language: node_js
 node_js:
-- 6
+- 8
 cache:
   directories:
   - node_modules
 script:
-- npm test
-- npm run build
+- yarn build
 deploy:
-  provider: s3
-  access_key_id: AKIAJ77NF7PUVCABJSYA
-  secret_access_key:
-    secure: Q7z5T9z4ci1zSdAZwLYVtJqrEnpbVYvNajC2CaAEJfdtYPNTM2H0zPSomm3TrdBxcOR0V3yXlYbexoezkY4KYhUWqc+1jel0R+28sRSOPqdIo4/PLdbh5+AaaruEzLoXA+oIrES5iJ9O/Fb8oesE/qvl0A0v+5ycXpKyju7ixUbePzpZT3KJ86lGlQzfgX1aO4AHZx6rmzm2A/aqQd0jZxzIU5d48eJ6EahDf4g1+TlT/Me+q+2EWYhPVT9qFLDuM4YAbI/icHqUv+pXFHfqORJgneIGRU5HnTU3dEakSmgskLWfnPASXqqGdIceOgvGe0CWEHh1MqalPDu9yKxr7hU3CtWMFFxzpR57EPuXWzjlJtS9VrDaSxuyRea9H1TqChoZzGU1BLSSAPhBue+SuHEndRkExdvOdzPh1JKujsUmr6U3hvNcGHjR5AlX6k2DUxjqS+QvqiCNHX2nGtte2BnnYHYIONcG5WE/8WQKLvDWtRaU3ex1jcN43sB+/Y1b9DYdCVfUJLp8SX4Rn4TOHmez4+cBMELyLhiOIx3LH7x0yxYbDK0u/pwnJeV8E814wgICDUS+CiwcMplQN5aRSF4XjWuLIRQp/toX44QbxklZWwHb1HpLNrQsM0AhOL8wKMEbUN0sOWDi62+vQVlzZqGmERloxOP/dfW8Yw0f0Pg=
-  bucket: happyhabit.app
-  region: eu-west-1
+  provider: firebase
+  project: "happy-habit"
+  token:
+    secure: yQtmDGRtrcTYL1QPY2I0HAPXUrxQkL8gytYBLUv+HqxvXf2XRSw/vNLxThWwheteFszz5Muf75JyElxaVlAWHW/V2H1xSWxM+kOTKm5yU9GbRgp7OcYwa0KdaSF5aHq46kjRnMiX1kq5a+d40OYqvZr7zgYZK5SFMYgZytFED+bhcd7xX0AoPUFfh40vWJgos06RHPZ2zCah4Dl3ppHuFO4LOpVqfm7q3BdH0yJltLxQ7RFLz1JMhWWh+qg+e4WtRivZDfmLDi+J7zFgTpn71SWRn/GFkLFxWb4TFzlyn1NhVT23KBxVXTMCE2xmRlCFMf5rTOtRNcK/tp5aFAdtBjrhab1rB8K3MHl314I71tNDGl5Lq6pu9Lvo/LEVfpNb/BRzKlfx12ucCWIa9LJETcgmolHjqeGqGQ33RXzilbvf7F2GqzS9qPQ3KNR/f6H5NPCtOE7qPy/Na3JONtNc5LZlIf3TexGX3FQCaElQxErRpQ6e6Kg4OgD7u7q9RPxZiDSRQfRxQ9c0fYIblVqK9ZJxhXZTcUxMjB5sDtjzvxsWta0JvJrpPEpiIZd/3bkxc/Llf89jpZ6PtPNcowVuT8jGVEjiQ9APWwS3HpWQu3bAikw/fKMwPRNSq2EnIuUYjB3Huzdy7rNbuBaj9QTOpXKjQC+AOvjMsuw0K0cevB0=
   local_dir: build
   skip_cleanup: true
   on:
     branch: master
   cache_control: max-age=21600
-  acl: public_read
