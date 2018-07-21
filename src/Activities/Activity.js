@@ -37,7 +37,6 @@ class Activity extends Component {
       .onSnapshot(collectionSnapshot => {
         this.setState({
           completions: collectionSnapshot.docs.map(item => {
-            console.log(item.data());
             return { id: item.id, ...item.data() };
           })
         });

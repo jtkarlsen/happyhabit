@@ -15,4 +15,5 @@ firebase.initializeApp(config);
 export default firebase;
 export const firestore = firebase.firestore();
 firestore.settings({ timestampsInSnapshots: true });
+firestore.enablePersistence();
 export const auth = firebase.auth();
