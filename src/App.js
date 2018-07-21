@@ -84,7 +84,7 @@ const mapDispatchToProps = dispatch => ({
 });
 
 const mapStateToProps = state => ({
-  ...state
+  auth_loaded: state.auth_loaded
 });
 
 export default connect(
