@@ -1,5 +1,6 @@
 import React, { Component } from "react";
-import { BrowserRouter, Route, Link, Redirect, Switch } from "react-router-dom";
+import { connect } from "react-redux";
+import { BrowserRouter, Route, Link, Switch } from "react-router-dom";
 import "./App.css";
 import Activities from "./Activities/Activities";
 import Activity from "./Activities/Activity";
@@ -10,37 +11,13 @@ import Menu from "./Menu/Menu";
 import Landing from "./Landing/Landing";
 import Rewards from "./Rewards/Rewards";
 import RewardForm from "./Rewards/RewardForm";
-
-const PrivateRoute = ({ component: Component, authenticated, ...rest }) => (
-  <Route
-    {...rest}
-    render={props =>
-      authenticated ? (
-        <Component {...props} />
-      ) : (
-        <Redirect
-          to={{
-            pathname: "/login",
-            state: { from: props.location }
-          }}
-        />
-      )
-    }
-  />
-);
+import { gotAuth } from "./redux/actions";
+import requireAuth from "./requireAuth";
 
 class App extends Component {
-  state = {
-    authenticated: false,
-    loadingAuth: true
-  };
-
   componentDidMount() {
     this.unregisterAuthObserver = auth.onAuthStateChanged(user =>
-      this.setState({
-        authenticated: !!user,
-        loadingAuth: false
-      })
+      this.props.gotAuth(user)
     );
   }
 
@@ -49,6 +26,7 @@ class App extends Component {
   }
 
   render() {
+    console.log(this.props);
     return (
       <BrowserRouter>
         <div className="App">
@@ -56,56 +34,42 @@ class App extends Component {
             <Link className="App-title" to="/menu">
               Happy Habit
             </Link>
-            {this.state.authenticated && (
+            {!!this.props.user && (
               <a className="App-auth" onClick={() => auth.signOut()}>
                 Logout
               </a>
             )}
-            {!this.state.authenticated && (
+            {!this.props.user && (
               <Link className="App-auth" to="/login">
                 Login
               </Link>
             )}
           </header>
-          {!this.state.loadingAuth && (
+          {this.props.auth_loaded && (
             <Switch>
-              <Route exact path="/login" component={Login} />
               <Route exact path="/" component={Landing} />
-              <PrivateRoute
-                exact
-                path="/menu"
-                component={Menu}
-                authenticated={this.state.authenticated}
-              />
-              <PrivateRoute
+              <Route exact path="/login" component={Login} />
+              <Route exact path="/menu" component={requireAuth(Menu)} />
+              <Route
                 exact
                 path="/activities"
-                component={Activities}
-                authenticated={this.state.authenticated}
+                component={requireAuth(Activities)}
               />
-              <PrivateRoute
+              <Route
                 exact
                 path="/activities/create"
-                component={ActivityForm}
-                authenticated={this.state.authenticated}
+                component={requireAuth(ActivityForm)}
               />
-              <PrivateRoute
+              <Route
                 exact
                 path="/activities/:id"
-                component={Activity}
-                authenticated={this.state.authenticated}
+                component={requireAuth(Activity)}
               />
-              <PrivateRoute
-                exact
-                path="/rewards"
-                component={Rewards}
-                authenticated={this.state.authenticated}
-              />
-              <PrivateRoute
+              <Route exact path="/rewards" component={requireAuth(Rewards)} />
+              <Route
                 exact
                 path="/rewards/create"
-                component={RewardForm}
-                authenticated={this.state.authenticated}
+                component={requireAuth(RewardForm)}
               />
             </Switch>
           )}
@@ -115,4 +79,15 @@ class App extends Component {
   }
 }
 
-export default App;
+const mapDispatchToProps = dispatch => ({
+  gotAuth: user => dispatch(gotAuth(user))
+});
+
+const mapStateToProps = state => ({
+  ...state
+});
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(App);

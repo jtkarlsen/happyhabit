@@ -12,8 +12,8 @@ class Login extends Component {
     // Terms of service url.
     tosUrl: "<your-tos-url>",
     signInSuccessUrl: this.props.location.state
-      ? this.props.location.state.from || "/"
-      : "/"
+      ? this.props.location.state.from || "/menu"
+      : "/menu"
   };
 
   render() {
