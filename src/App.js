@@ -26,7 +26,6 @@ class App extends Component {
   }
 
   render() {
-    console.log(this.props);
     return (
       <BrowserRouter>
         <div className="App">
@@ -84,6 +83,7 @@ const mapDispatchToProps = dispatch => ({
 });
 
 const mapStateToProps = state => ({
+  user: state.user,
   auth_loaded: state.auth_loaded
 });
 
