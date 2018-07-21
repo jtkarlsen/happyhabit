@@ -1,13 +1,11 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { firestore, auth } from "./../firebase";
+import { connect } from "react-redux";
 import "./Activities.css";
+import { gotActivities } from "../redux/actions";
 
 class Activities extends Component {
-  state = {
-    activities: []
-  };
-
   componentWillMount() {
     firestore
       .collection("users")
@@ -18,16 +16,14 @@ class Activities extends Component {
         collectionSnapshot.forEach(function(doc) {
           activities.push({ ...doc.data(), id: doc.id });
         });
-        this.setState({
-          activities
-        });
+        this.props.gotActivities(activities);
       });
   }
 
   render() {
     return (
       <div className="Activities">
-        {this.state.activities.map(activity => {
+        {this.props.activities.map(activity => {
           return (
             <Link
               key={activity.id}
@@ -47,4 +43,15 @@ class Activities extends Component {
   }
 }
 
-export default Activities;
+const mapDispatchToProps = dispatch => ({
+  gotActivities: activities => dispatch(gotActivities(activities))
+});
+
+const mapStateToProps = state => ({
+  activities: state.activities
+});
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Activities);

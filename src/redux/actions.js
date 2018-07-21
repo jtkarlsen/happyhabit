@@ -4,3 +4,10 @@ export const gotAuth = user => dispatch => {
     data: user
   });
 };
+
+export const gotActivities = activities => dispatch => {
+  dispatch({
+    type: "GOT_ACTIVITIES",
+    data: activities
+  });
+};
