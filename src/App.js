@@ -6,6 +6,8 @@ import Activity from "./Activities/Activity";
 import ActivityForm from "./Activities/ActivityForm";
 import { auth } from "./firebase";
 import Login from "./Login/Login";
+import Menu from "./Menu/Menu";
+import Landing from "./Landing/Landing";
 import Rewards from "./Rewards/Rewards";
 import RewardForm from "./Rewards/RewardForm";
 
@@ -51,7 +53,7 @@ class App extends Component {
       <BrowserRouter>
         <div className="App">
           <header className="App-header">
-            <Link className="App-title" to="/">
+            <Link className="App-title" to="/menu">
               Happy Habit
             </Link>
             {this.state.authenticated && (
@@ -68,9 +70,16 @@ class App extends Component {
           {!this.state.loadingAuth && (
             <Switch>
               <Route exact path="/login" component={Login} />
+              <Route exact path="/" component={Landing} />
               <PrivateRoute
                 exact
-                path="/"
+                path="/menu"
+                component={Menu}
+                authenticated={this.state.authenticated}
+              />
+              <PrivateRoute
+                exact
+                path="/activities"
                 component={Activities}
                 authenticated={this.state.authenticated}
               />

@@ -66,7 +66,7 @@ class ActivityForm extends Component {
   render() {
     return (
       <div className="ActivityForm">
-        {this.state.redirect && <Redirect to="/" />}
+        {this.state.redirect && <Redirect to="/activities" />}
         <div id="ActivityForm-name" className={"ActivityForm-input-container"}>
           <input
             className={`ActivityForm-input ${!this.state.validation.name &&
