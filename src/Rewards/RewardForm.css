@@ -1,0 +1,14 @@
+.RewardForm-input {
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+}
+
+.RewardForm-input-container {
+  width: 100%;
+  height: 3em;
+}
+
+.RewardForm-input-error {
+  border: 1px solid darkred;
+}

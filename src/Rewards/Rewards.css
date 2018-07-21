@@ -1,0 +1,28 @@
+.Rewards-subitem {
+  height: 4em;
+  line-height: 4em;
+  float: left;
+  width: 50%;
+}
+
+.Rewards-item {
+  float: left;
+  width: 100%;
+  text-decoration: none;
+  border: 1px solid white;
+  box-sizing: border-box;
+  color: white;
+  background-color: #62c5f2;
+}
+
+.Rewards-create {
+  text-decoration: none;
+  height: 4em;
+  line-height: 4em;
+  width: 100%;
+  border: 1px solid white;
+  box-sizing: border-box;
+  display: inline-block;
+  color: white;
+  background-color: #00668f;
+}

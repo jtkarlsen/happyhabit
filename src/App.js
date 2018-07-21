@@ -6,6 +6,8 @@ import Activity from "./Activities/Activity";
 import ActivityForm from "./Activities/ActivityForm";
 import { auth } from "./firebase";
 import Login from "./Login/Login";
+import Rewards from "./Rewards/Rewards";
+import RewardForm from "./Rewards/RewardForm";
 
 const PrivateRoute = ({ component: Component, authenticated, ...rest }) => (
   <Route
@@ -82,6 +84,18 @@ class App extends Component {
                 exact
                 path="/activities/:id"
                 component={Activity}
+                authenticated={this.state.authenticated}
+              />
+              <PrivateRoute
+                exact
+                path="/rewards"
+                component={Rewards}
+                authenticated={this.state.authenticated}
+              />
+              <PrivateRoute
+                exact
+                path="/rewards/create"
+                component={RewardForm}
                 authenticated={this.state.authenticated}
               />
             </Switch>
