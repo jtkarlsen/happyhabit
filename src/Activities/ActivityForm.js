@@ -23,16 +23,14 @@ class ActivityForm extends Component {
     this.setState({
       validation: { ...this.state.validation, name: isValid }
     });
-    console.log(`Name is ${isValid}`);
     return isValid;
   };
 
   isValidReward = () => {
-    const isValid = !!this.state.reward;
+    const isValid = this.state.reward >= 0;
     this.setState({
       validation: { ...this.state.validation, reward: isValid }
     });
-    console.log(`Reward is ${isValid}`);
     return isValid;
   };
 
